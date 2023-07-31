@@ -14,11 +14,5 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 
 3. **Geração de Orçamentos:** Criação de orçamentos personalizados para os clientes, com base nas informações do projeto e serviços oferecidos.
 
-4. **Controle de Estoque:** Acompanhamento do estoque de equipamentos e materiais necessários para a instalação dos sistemas de energia solar.
-
-5. **Gestão de Funcionários:** Registro de informações dos colaboradores, bem como o controle de atribuições de tarefas e responsabilidades.
-
-6. **Análise de Dados:** Relatórios e gráficos para análise de desempenho do negócio, permitindo tomadas de decisão embasadas em dados.
-
 ## Requisitos de Sistema
 
