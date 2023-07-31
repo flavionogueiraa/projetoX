@@ -17,8 +17,8 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 ## Requisitos de Sistema
 ## Casos de Uso
 ## Membross da Equipe
--Dimona Laquis Alves Andrade;
--Eric dos Santos Bezerra;
--Francisco Flávio Nogueira da Silva;
--Natália Vitoria Moura da Silva.
+- **Dimona Laquis Alves Andrade;**
+- **Eric dos Santos Bezerra;**
+- **Francisco Flávio Nogueira da Silva;**
+- **Natália Vitoria Moura da Silva.**
 
