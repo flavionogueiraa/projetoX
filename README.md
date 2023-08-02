@@ -24,6 +24,6 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 - **Dimona Laquis Alves Andrade;**
 - **Eric dos Santos Bezerra;**
 - **Francisco Flávio Nogueira da Silva;**
-- **Natália Vitoria Moura da Silva.**
+- **Natália Vitória Moura da Silva.**
 ## Professor Orientador🚀
 - **Prof. Alysson Filgueira Milanez**
