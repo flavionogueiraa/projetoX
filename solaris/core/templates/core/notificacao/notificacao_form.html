@@ -1,0 +1,16 @@
+{% extends 'bases/base_form.html' %}
+<!--  -->
+{% block fields %}
+<div class="flex flex-col">
+  <label class="label" for="{{form.mensagem.id_for_label}}">
+    {{form.mensagem.label}}
+  </label>
+  {{form.mensagem}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.usuario.id_for_label}}">
+    {{form.usuario.label}}
+  </label>
+  {{form.usuario}}
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'bases/base.html' %}
+<!--  -->
+{% load static %} {% load humanize %}
+<!--  -->
+
+{% block content %}
+<!--  -->
+{% include 'top_bar.html'%}
+
+<main class="container-content min-h-[80vh]">
+  <div class="grid grid-cols-2 gap-16">
+    {% include './funcionarios_por_visita_card.html' %}
+
+    <!--  -->
+
+    {% include './estacoes_por_kw_card.html' %}
+
+    <!--  -->
+
+    {% include './clientes_por_cidade_card.html' %}
+
+    <!--  -->
+
+    {% include './visitas_por_cidade_card.html' %}
+
+    <!--  -->
+
+    {% include './infos_card.html' %}
+
+    <!--  -->
+
+    {% include './visitas_proximos_dias_card.html' %}
+  </div>
+</main>
+{% endblock %}
+<!--  -->
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock %}

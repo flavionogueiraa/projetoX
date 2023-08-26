@@ -1,0 +1,23 @@
+{% extends 'bases/base.html' %}
+<!--  -->
+{% load home_tags %}
+<!--  -->
+{% block content %}
+<!--  -->
+{% include 'top_bar.html'%}
+
+<main class="container-content min-h-[80vh]">
+  <div class="card mt-32 p-24 flex flex-col gap-32 mb-48 md2:mt-0">
+    {% block title %}
+    <div class="flex justify-between md2:flex-wrap">
+      <h1 class="title text-neutral-100">
+        {{title|default:"Adicione uma variável chamada 'title' no contexto"}}
+      </h1>
+      {% block right_cta %}{% endblock %}
+    </div>
+    {% endblock %}
+    <!--  -->
+    {% include "../cliente/cliente_form/dados_estacao_solar.html" with simulador="True" %}
+  </div>
+</main>
+{% endblock %}

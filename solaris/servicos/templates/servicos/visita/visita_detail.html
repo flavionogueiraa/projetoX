@@ -1,0 +1,52 @@
+{% extends 'bases/base_detail.html' %}
+<!--  -->
+{% load home_tags %}
+<!--  -->
+{% block right_cta %}
+<a class="btn" href="{% url 'marcar_visita_realizada' object.id %}">
+  Marcar como realizada
+</a>
+{% endblock %}
+
+<!--  -->
+{% block fields %}
+<div class="flex flex-col">
+  <label class="label font-bold" for="{{object|get_attribute:'tipo,name'}}">
+    {{object|get_attribute:'tipo,verbose_name'}}
+  </label>
+  {{object.tipo}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object|get_attribute:'data_hora,name'}}"
+  >
+    {{object|get_attribute:'data_hora,verbose_name'}}
+  </label>
+  {{object.data_hora}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object|get_attribute:'funcionario,name'}}"
+  >
+    {{object|get_attribute:'funcionario,verbose_name'}}
+  </label>
+  {{object.funcionario}}
+</div>
+<div class="flex flex-col">
+  <label class="label font-bold" for="{{object|get_attribute:'cliente,name'}}">
+    {{object|get_attribute:'cliente,verbose_name'}}
+  </label>
+  {{object.cliente}}
+</div>
+<div class="flex flex-col col-span-full">
+  <label
+    class="label font-bold"
+    for="{{object|get_attribute:'observacoes,name'}}"
+  >
+    {{object|get_attribute:'observacoes,verbose_name'}}
+  </label>
+  {{object.observacoes}}
+</div>
+{% endblock %}

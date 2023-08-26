@@ -1,0 +1,310 @@
+{% extends 'bases/base.html' %} {% load humanize %}
+{% load home_tags %}
+
+<!--  -->
+{% load static %}
+<!--  -->
+{% block body_class %}{% endblock %}
+<!--  -->
+{% block extra_styles %} {% endblock %}
+<!--  -->
+{% block content %}
+<!--  -->
+{% get_normal_model_links lower_model as normal_model_links %}
+
+{% include 'top_bar.html'%}
+<main class="container-content min-h-[80vh]">
+  <!--  -->
+
+  <div class="card mt-32 p-24 flex flex-col gap-32 mb-48 md2:mt-0">
+    {% block title %}
+    <div class="flex justify-between md2:flex-wrap">
+      <h1 class="title text-neutral-100">
+        {{title|default:'Adicione uma variável "create_title" no contexto'}}
+      </h1>
+
+      <a href="{{normal_model_links.create}}" class="btn icon-right h-48">
+        <svg class="!h-24 !w-24">
+          <use xlink:href="#icon_plus"></use>
+        </svg>
+        {% if normal_model_links.create_link or create_link and create_title %}
+          {{create_title}}
+        {% else %}
+          {{create_title|default:'Adicione as variáveis "create_title" e "create_link" no contexto'}}
+        {% endif %}
+      </a>
+    </div>
+    {% endblock %}
+
+    <div class="flex flex-col">
+      <div class="flex items-center mb-16 gap-16 md2:flex-col justify-between">
+        <div
+          class="flex gap-8 items-center input-container self-start md2:w-full"
+        >
+          <div class="input-icon md2:w-full">
+            <input
+              class="input-text h-48 bg-white"
+              placeholder="Buscar"
+              js-ativo
+              js-table-search
+              type="text"
+              value="{{filter}}"
+            />
+            <svg class="cursor-pointer transition-transform hover:scale-110">
+              <use xlink:href="#icon_close"></use>
+            </svg>
+          </div>
+
+          <button class="btn quartenary h-48">
+            <svg class="w-24 h-24">
+              <use xlink:href="#icon_search"></use>
+            </svg>
+          </button>
+        </div>
+
+        <div
+          class="flex items-center gap-16 md2:flex-col md2:w-full md2:gap-32 md2:mb-16"
+        >
+          <label
+            class="flex items-center gap-4 text-sm text-neutral-75 font-normal cursor-pointer md2:w-full"
+          >
+            <div class="select-container h-48 text-neutral-75 md2:w-full">
+              <select
+                id="select-table-recentes"
+                js-choices
+                js-table-recentes
+                placeholder="placeholder"
+                class=""
+              >
+              <option value="id" selected>Mais antigos</option>
+                <option value="-id">Mais recentes</option>
+              </select>
+            </div>
+          </label>
+
+          <label
+            class="flex items-center gap-4 text-sm text-neutral-75 font-medium cursor-pointer md2:self-end"
+          >
+            <p>Linhas por página</p>
+            <div class="select-container h-48">
+              <select
+                id="select-table"
+                js-choices
+                js-table-qnt
+                placeholder="placeholder"
+                class=""
+              >
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="table-basic dragscroll">
+        <table id="{% block table_id %} example_id {% endblock %}" js-table-ordenation>
+          <thead>
+            <tr>
+              <th data-reference="id" js-add-filter="order, id">ID</th>
+              {% block ths %}
+                <th data-reference="example_field" js-add-filter="order, example_field">
+                  Example field
+                </th>
+                <th
+                  data-reference="example__sub_field"
+                  js-add-filter="order, example__sub_field"
+                >
+                  Example sub field
+                </th>
+              {% endblock %}
+              <th
+                data-reference="data_criacao"
+                js-add-filter="order, data_criacao"
+              >
+                Data de criação
+              </th>
+              <th
+                data-reference="data_atualizacao"
+                js-add-filter="order, data_atualizacao"
+              >
+                Data de atualização
+              </th>
+              <th
+                data-reference="usuario_criacao__username"
+                js-add-filter="order, usuario_criacao__username"
+              >
+                Usuário de criação
+              </th>
+              <th
+                data-reference="usuario_atualizacao__username"
+                js-add-filter="order, usuario_atualizacao__username"
+              >
+                Usuário de atualização
+              </th>
+              <th class="w-[10%] pointer-events-none">
+                Ações
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for object in object_list %}
+              <tr>
+                <td data-reference="id">
+                  <div class="px-8 py-10 td-container">
+                    <p>{{object.id|default:'-'}}</p>
+                  </div>
+                </td>
+                {% block tds %}
+                  <td data-reference="example_field">
+                    <div class="px-8 py-10 td-container">
+                      <p>{{object.example_field|default:'-'}}</p>
+                    </div>
+                  </td>
+                  <td data-reference="example__sub_field">
+                    <div class="px-8 py-10 td-container">
+                      <p>{{object.example.sub_field|default:'-'}}</p>
+                    </div>
+                  </td>
+                {% endblock %}
+                <td data-reference="data_criacao">
+                  <div class="px-8 py-10 td-container">
+                    <p>{{object.data_criacao|date:"d/m/Y"|default:'-'}}</p>
+                  </div>
+                </td>
+                <td data-reference="data_atualizacao">
+                  <div class="px-8 py-10 td-container">
+                    <p>{{object.data_atualizacao|date:"d/m/Y"|default:'-'}}</p>
+                  </div>
+                </td>
+                <td data-reference="usuario_criacao__username">
+                  <div class="px-8 py-10 td-container">
+                    <p>{{object.usuario_criacao|default:'-'}}</p>
+                  </div>
+                </td>
+                <td data-reference="usuario_atualizacao__username">
+                  <div class="px-8 py-10 td-container">
+                    <p>{{object.usuario_atualizacao|default:'-'}}</p>
+                  </div>
+                </td>
+                <td data-reference="acoes">
+                  <!-- Coluna de ações -->
+                  {% get_single_model_links lower_model object.id as single_model_links %}
+                  <div class="px-8 td-container justify-end gap-8">
+                    <a href="{{single_model_links.detail|default:'-'}}" class="btn secondary">
+                      <svg>
+                        <use xlink:href="#icon_search"></use>
+                      </svg>
+                    </a>
+                    <a href="{{single_model_links.update|default:'-'}}" class="btn secondary">
+                      <svg>
+                        <use xlink:href="#icon_pen"></use>
+                      </svg>
+                    </a>
+                    <a href="{{single_model_links.delete|default:'-'}}" class="btn secondary">
+                      <svg>
+                        <use xlink:href="#icone-trash-delete-bin-setting"></use>
+                      </svg>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        class="table-pagination flex items-center justify-between mt-16 md2:flex-col-reverse md2:gap-32"
+      >
+        {% block baixar_table %} {% endblock %}
+
+        <div class="pagination">
+          <span class="flex items-center gap-8 w-full justify-end mt-8">
+            {% if page_obj.paginator.num_pages > 2 %}
+            <a
+              href="#"
+              js-add-filter="page, 1"
+              data-tippy-content="Primeira Pagina"
+              class="rounded-pag"
+            >
+              <svg class="w-14 h-14">
+                <use xlink:href="#icon_anterior_double"></use>
+              </svg>
+            </a>
+            {% endif %}
+            <!--  -->
+            {% if page_obj.has_previous %}
+            <a
+              href="#"
+              js-add-filter="page, {{ page_obj.previous_page_number }}"
+              data-tippy-content="Anterior"
+              class="rounded-pag"
+            >
+              <svg class="h-28 w-28">
+                <use xlink:href="#icon_anterior"></use>
+              </svg>
+            </a>
+            {% endif %}
+
+            <span class="current">
+              Página {{ page_obj.number|default:'1' }}
+              <!--  -->
+              de {{ page_obj.paginator.num_pages|default:'1' }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a
+              href="#"
+              js-add-filter="page, {{ page_obj.next_page_number }}"
+              data-tippy-content="Próxima"
+              class="rounded-pag rotate-180"
+            >
+              <svg class="h-28 w-28">
+                <use xlink:href="#icon_anterior"></use>
+              </svg>
+            </a>
+            {% endif %}
+            <!--  -->
+            {% if page_obj.paginator.num_pages > 2 %}
+            <a
+              href="#"
+              js-add-filter="page, {{ page_obj.paginator.num_pages }}"
+              texthelper
+              data-tippy-content="Última Pagina"
+              class="rounded-pag rotate-180"
+            >
+              <svg class="w-14 h-14">
+                <use xlink:href="#icon_anterior_double"></use>
+              </svg>
+            </a>
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const input = document.querySelector("[js-table-search]");
+    const btnClear = input.nextElementSibling;
+
+    function showBtnClearFilter(input, btn) {
+      if (input.value != "") {
+        btn.classList.remove("hidden");
+      } else {
+        btn.classList.add("hidden");
+      }
+    }
+    (function init() {
+      showBtnClearFilter(input, btnClear);
+      const url = new URL(window.location);
+    })();
+  </script>
+</main>
+{% endblock %}
+<!--  -->
+{% block extra_js %} {% endblock %}

@@ -1,0 +1,35 @@
+{% load home_tags %}
+
+<div class="flex flex-col">
+    <label class="label font-bold" for="{{object|get_attribute:'nome,name'}}">
+      {{object|get_attribute:'nome,verbose_name'}}
+    </label>
+    {{object.nome}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label font-bold" for="{{object|get_attribute:'email,name'}}">
+      {{object|get_attribute:'email,verbose_name'}}
+    </label>
+    {{object.email}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label font-bold" for="{{object|get_attribute:'telefone,name'}}">
+      {{object|get_attribute:'telefone,verbose_name'}}
+    </label>
+    {{object.telefone}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label font-bold" for="{{object|get_attribute:'cpf_cnpj,name'}}">
+      {{object|get_attribute:'cpf_cnpj,verbose_name'}}
+    </label>
+    {{object.cpf_cnpj}}
+  </div>
+  <div class="flex flex-col col-span-full">
+    <label
+      class="label font-bold"
+      for="{{object|get_attribute:'termo_compromisso,name'}}"
+    >
+      {{object|get_attribute:'termo_compromisso,verbose_name'}}
+    </label>
+    {{object.termo_compromisso}}
+</div>

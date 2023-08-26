@@ -1,0 +1,44 @@
+<div class="card p-24 flex flex-col gap-32 md2:mt-0">
+  <h2 class="text-2xl">Visitas por cidade</h2>
+  <div id="chartVisitasCidade" class="m-auto"></div>
+  {{visitas_por_cidade|json_script:"visitas_por_cidade"}}
+</div>
+
+<script>
+  const visitasCidadeText = document.querySelector(
+    "#visitas_por_cidade"
+  ).textContent;
+  const visitasCidade = JSON.parse(visitasCidadeText);
+
+  // var options = {
+  //   series: visitasCidade.map((visita) => visita.total),
+  //   chart: {
+  //     width: 380,
+  //     type: "donut",
+  //   },
+  //   labels: visitasCidade.map((visita) => visita.cliente__endereco__cidade),
+  //   ...GLOBAL.defaultChartOptions,
+  // };
+
+  var options = {
+    series: visitasCidade.map((visita) => visita.total),
+    chart: {
+      width: 380,
+      type: "polarArea",
+    },
+    stroke: {
+      colors: ["transparent"],
+    },
+    fill: {
+      opacity: 0.8,
+    },
+    labels: visitasCidade.map((visita) => visita.cliente__endereco__cidade),
+    ...GLOBAL.defaultChartOptions,
+  };
+
+  var chart = new ApexCharts(
+    document.querySelector("#chartVisitasCidade"),
+    options
+  );
+  chart.render();
+</script>

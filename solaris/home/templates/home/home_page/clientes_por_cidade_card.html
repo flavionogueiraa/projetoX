@@ -1,0 +1,58 @@
+<div class="card p-24 flex flex-col gap-32 md2:mt-0">
+  <h2 class="text-2xl">Clientes por cidade</h2>
+  <div id="chartClientesCidade"></div>
+  {{clientes_por_cidade|json_script:"clientes_por_cidade"}}
+</div>
+
+<script>
+  const clientesCidadeText = document.querySelector(
+    "#clientes_por_cidade"
+  ).textContent;
+  const clientesCidade = JSON.parse(clientesCidadeText);
+
+  var options = {
+    series: [
+      {
+        data: clientesCidade.map((cliente) => cliente.total),
+      },
+    ],
+    chart: {
+      type: "bar",
+      height: 250,
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 4,
+        horizontal: true,
+      },
+    },
+    xaxis: {
+      categories: clientesCidade.map((cliente) => cliente.endereco__cidade),
+    },
+    ...GLOBAL.defaultChartOptions,
+  };
+  // var options = {
+  //   series: clientesCidade.map((cliente) => cliente.total),
+  //   chart: {
+  //     width: 380,
+  //     type: "donut",
+  //   },
+  //   labels: clientesCidade.map((cliente) => cliente.endereco__cidade),
+  //   plotOptions: {
+  //     pie: {
+  //       donut: {
+  //         labels: {
+  //           show: true,
+  //         },
+  //       },
+  //     },
+  //   },
+  //   ...GLOBAL.defaultChartOptions,
+  // };
+
+  var chart = new ApexCharts(
+    document.querySelector("#chartClientesCidade"),
+    options
+  );
+  chart.render();
+</script>

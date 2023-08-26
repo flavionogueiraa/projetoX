@@ -1,0 +1,82 @@
+{% extends 'bases/base_detail.html' %} {% load home_tags %}
+
+<!--  -->
+{% block main_id %}cliente_detail{% endblock %}
+
+<!--  -->
+
+{% block extra_styles %}
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+  rel="stylesheet"
+/>
+
+<style>
+  .custom {
+    width: 24px;
+    height: 24px;
+  }
+  .logo {
+    padding-bottom: 1rem;
+  }
+  .custom-gap {
+    gap: 16px;
+  }
+</style>
+{% endblock %}
+
+<!--  -->
+
+{% block right_cta %}
+<a class="btn" href="{% url 'visita_create_view' %}">Nova visita</a>
+{% endblock %}
+
+<!--  -->
+
+{% block before_fields %} {% include './cliente_visitas_timeline.html' %}
+
+<!--  -->
+<hr class="col-span-full custom-gap" />
+{% endblock %}
+
+<!--  -->
+{% block fields %} {% include './dados_cliente.html' %}
+
+<!--  -->
+<hr class="col-span-full" />
+{% endblock %} {% block extra_fields %} {% include './dados_endereco.html' %}
+<!--  -->
+
+{% if estacao_solar %}
+<hr class="col-span-full" />
+
+{% include './dados_estacao_solar.html' %} {% endif %} {% endblock %}
+
+<!--  -->
+{% block extra_js %}
+<!-- FLOWBITE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+<script>
+  const quantidadeVisitas = Number("{{visitas.count}}");
+  const slidesPerView = quantidadeVisitas > 3 ? 3 : quantidadeVisitas;
+
+  const swiperClienteDetail = new Swiper(".swiper-cliente-detail", {
+    slidesPerView: 1,
+    spaceBetween: 8,
+    autoplay: {
+      delay: 3000,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 8,
+      },
+      768: {
+        slidesPerView: slidesPerView,
+        spaceBetween: 8,
+      },
+    },
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load home_tags %}
+
+<h2 class="flex flex-col col-span-full">Dados da estação solar</h2>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{estacao_solar|get_attribute:'quantidade_placas,name'}}"
+  >
+    {{estacao_solar|get_attribute:'quantidade_placas,verbose_name'}}
+  </label>
+  {{estacao_solar.quantidade_placas}}
+</div>
+
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{estacao_solar|get_attribute:'consumo_mensal,name'}}"
+  >
+    {{estacao_solar|get_attribute:'consumo_mensal,verbose_name'}}
+  </label>
+  {{estacao_solar.consumo_mensal}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{estacao_solar|get_attribute:'geracao_mensal,name'}}"
+  >
+    {{estacao_solar|get_attribute:'geracao_mensal,verbose_name'}}
+  </label>
+  {{estacao_solar.geracao_mensal}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{estacao_solar|get_attribute:'kw_placa,name'}}"
+    >{{estacao_solar|get_attribute:'kw_placa,verbose_name'}}
+  </label>
+  {{estacao_solar.kw_placa}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{estacao_solar|get_attribute:'valor_cada_placa,name'}}"
+  >
+    {{estacao_solar|get_attribute:'valor_cada_placa,verbose_name'}}
+  </label>
+  {{estacao_solar.valor_cada_placa}}
+</div>
