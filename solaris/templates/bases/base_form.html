@@ -1,0 +1,73 @@
+{% extends 'bases/base.html' %}
+<!--  -->
+{% load home_tags %}
+
+<!--  -->
+{% block content %}
+<!--  -->
+{% get_normal_model_links lower_model as normal_model_links %}
+<!--  -->
+{% include 'top_bar.html'%}
+
+<main class="container-content min-h-[80vh]">
+  <div class="card mt-32 p-24 flex flex-col gap-32 mb-48 md2:mt-0">
+    {% block title %}
+    <div class="flex justify-between md2:flex-wrap">
+      <h1 class="title text-neutral-100">
+        {{title|default:"Adicione uma variável chamada 'title' no contexto"}}
+      </h1>
+    </div>
+    {% endblock %}
+
+    <form method="post" class="flex flex-col gap-32" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="grid grid-cols-3 gap-16">
+        <div class="flex flex-col col-span-full">
+          {{form.errors}}
+        </div>
+        {% block fields %}
+        <div class="flex flex-col">
+          <label class="label" for="{{form.example.id_for_label}}">
+            {{form.example.label}}
+          </label>
+          {{form.example}}
+        </div>
+        {% endblock %}
+      </div>
+
+      <div class="flex gap-16 justify-end">
+        {% block extra_buttons %}{% endblock %}
+        <!--  -->
+        {% if object %}
+        <!--  -->
+        {% get_single_model_links lower_model object.id as single_model_links %}
+        <a class="btn secondary" href="{{single_model_links.detail}}?mensagem_toastify=Operação cancelada com sucesso!">
+          {% if single_model_links.detail %}
+          <!--  -->
+          Cancelar
+          <!--  -->
+          {% else %}
+          <!--  -->
+          Erro com o link de cancelamento.
+          <!--  -->
+          {% endif %}
+        </a>
+        {% else %}
+        <a class="btn secondary" href="{{normal_model_links.list}}?mensagem_toastify=Operação cancelada com sucesso!">
+          {% if normal_model_links.list %}
+          <!--  -->
+          Cancelar
+          <!--  -->
+          {% else %}
+          <!--  -->
+          Erro com o link de cancelamento.
+          <!--  -->
+          {% endif %}
+        </a>
+        {% endif %}
+        <button class="btn primary" type="submit">Salvar</button>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

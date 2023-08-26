@@ -1,0 +1,38 @@
+<div class="card flex flex-col gap-32 md2:mt-0">
+  <div class="tabs" js-tab>
+    <ul class="tabs-wrapper flex">
+      <li class="tab-item active" data-tab="tab-1">Quantidade de clientes</li>
+      <li class="tab-item" data-tab="tab-2">Quantidade de visitas</li>
+      <li class="tab-item" data-tab="tab-3">Quantidade de estações</li>
+    </ul>
+
+    <div class="tabs-content p-24">
+      <div class="tab-collapse active flex items-center gap-8" data-tab="tab-1">
+        <svg class="w-64 h-64">
+          <use xlink:href="#icon_person"></use>
+        </svg>
+        <div class="tab-container text-6xl text-center text-primary-pure-dark">
+          {{ clientes.count }}
+        </div>
+      </div>
+
+      <div class="tab-collapse flex items-center gap-8" data-tab="tab-2">
+        <svg class="w-64 h-64">
+          <use xlink:href="#icon_house"></use>
+        </svg>
+        <div class="tab-container text-6xl text-center text-primary-pure-dark">
+          {{ visitas.count }}
+        </div>
+      </div>
+
+      <div class="tab-collapse flex items-center gap-8" data-tab="tab-3">
+        <svg class="w-64 h-64">
+          <use xlink:href="#icon_solar"></use>
+        </svg>
+        <div class="tab-container text-6xl text-center text-primary-pure-dark">
+          {{ estacoes.count }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

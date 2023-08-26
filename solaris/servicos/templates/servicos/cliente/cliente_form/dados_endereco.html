@@ -1,0 +1,130 @@
+{% load widget_tweaks %}
+
+<h2 class="flex flex-col col-span-full">Dados do endereço</h2>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.cep.id_for_label}}">
+    {{endereco_form.cep.label}}
+  </label>
+  {{endereco_form.cep|attr:'js-cep-search'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.rua.id_for_label}}">
+    {{endereco_form.rua.label}}
+  </label>
+  {{endereco_form.rua|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.numero.id_for_label}}">
+    {{endereco_form.numero.label}}
+  </label>
+  {{endereco_form.numero|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.bairro.id_for_label}}">
+    {{endereco_form.bairro.label}}
+  </label>
+  {{endereco_form.bairro|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.referencia.id_for_label}}">
+    {{endereco_form.referencia.label}}
+  </label>
+  {{endereco_form.referencia|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.cidade.id_for_label}}">
+    {{endereco_form.cidade.label}}
+  </label>
+  {{endereco_form.cidade|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{endereco_form.estado.id_for_label}}">
+    {{endereco_form.estado.label}}
+  </label>
+  {{endereco_form.estado|attr:'js-cep-search-item'}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="">Incidência</label>
+  <input name="incidencia" class="disabled input-text" type="text" />
+</div>
+<!-- Hidden fields -->
+{{endereco_form.latitude}}
+<!--  -->
+{{endereco_form.longitude}}
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  function searchCEP() {
+    const cepInputs = document.querySelectorAll("[js-cep-search]");
+    const cepItems = document.querySelectorAll("[js-cep-search-item]");
+    function buscaCEP(cepInput) {
+      if (cepInput.value.length === 9) {
+        const url = `https://brasilapi.com.br/api/cep/v2/${cepInput.value}`;
+        axios
+          .get(url)
+          .then(({ data }) => {
+            setFields(data);
+          })
+          .catch(({ response }) => {
+            unsetFields();
+            const errorMessage = response.data.errors[0].message;
+            GLOBAL.showToastify(errorMessage);
+          });
+      } else {
+        unsetFields();
+        cepInput.value = "";
+      }
+    }
+    cepInputs.forEach((cepInput) => {
+      const cepIsValid = () => cepInput.value.length > 8;
+      cepInput.addEventListener("input", () => {
+        if (!cepIsValid()) return;
+        buscaCEP(cepInput);
+      });
+      cepInput.addEventListener("focusout", () => {
+        if (!cepIsValid()) return;
+        buscaCEP(cepInput);
+      });
+    });
+    function setFields(data) {
+      const { street, neighborhood, city, state, location } = data;
+      cepItems.forEach((item) => {
+        const attr = item.getAttribute("js-cep-search-item");
+        let valueData = data[attr.toString()];
+        switch (item.name) {
+          case "cidade":
+            item.value = city;
+            break;
+          case "rua":
+            item.value = street || "";
+            break;
+          case "estado":
+            item.value = state;
+            break;
+          case "bairro":
+            item.value = neighborhood || "";
+            break;
+          case "latitude":
+            item.value = location.coordinates.latitude || "";
+            break;
+          case "longitude":
+            item.value = location.coordinates.longitude || "";
+            break;
+          default:
+            break;
+        }
+        if (valueData !== undefined)
+          setAndToggleEnable(item, valueData, (toggle = false));
+      });
+    }
+    function unsetFields() {
+      cepItems.forEach((item) => {
+        item.value = "";
+      });
+    }
+  }
+
+  (function init() {
+    searchCEP();
+  })();
+</script>

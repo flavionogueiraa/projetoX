@@ -1,0 +1,37 @@
+<div class="card p-24 flex flex-col gap-32 md2:mt-0">
+  <h2 class="text-2xl">Estações por kW(h) mensal</h2>
+  <div id="charEstacoesPorKWMensal"></div>
+  {{estacoes_por_kw_mensal|json_script:"estacoes_por_kw_mensal"}}
+</div>
+
+<script>
+  const estacoesPorKWMensalText = document.querySelector(
+    "#estacoes_por_kw_mensal"
+  ).textContent;
+  const estacoesPorKWMensal = JSON.parse(estacoesPorKWMensalText);
+  var options = {
+    series: [
+      {
+        name: "Geração mensal",
+        data: estacoesPorKWMensal.map((estacao) => estacao.geracao_mensal),
+      },
+    ],
+    chart: {
+      height: 380,
+      type: "bar",
+      //   width: 100,
+    },
+    xaxis: {
+      categories: estacoesPorKWMensal.map(
+        (estacao) => `Estação do(a) ${estacao.cliente__nome}`
+      ),
+    },
+    ...GLOBAL.defaultChartOptions,
+  };
+
+  var chart = new ApexCharts(
+    document.querySelector("#charEstacoesPorKWMensal"),
+    options
+  );
+  chart.render();
+</script>

@@ -1,0 +1,50 @@
+{% extends 'bases/base_listagem.html' %}
+<!--  -->
+
+<!--  -->
+{% block table_id %}table_cliente{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block ths %}
+<th data-reference="tipo" js-add-filter="order, tipo">Tipo</th>
+<th data-reference="data_hora" js-add-filter="order, data_hora">Data e hora</th>
+<th data-reference="funcionario" js-add-filter="order, funcionario">
+  Funcionário
+</th>
+<th data-reference="cliente" js-add-filter="order, cliente">Cliente</th>
+<th data-reference="observacoes" js-add-filter="order, observacoes">
+  Observações
+</th>
+{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block tds %}
+<td data-reference="tipo">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.tipo|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="data_hora">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.data_hora|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="funcionario">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.funcionario|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="cliente">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.cliente|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="observacoes">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.observacoes|default:'-'}}</p>
+  </div>
+</td>
+{% endblock %}
+<!--  -->

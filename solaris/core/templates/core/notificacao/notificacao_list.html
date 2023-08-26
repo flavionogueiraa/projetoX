@@ -1,0 +1,30 @@
+{% extends 'bases/base_listagem.html' %}
+<!--  -->
+
+<!--  -->
+{% block table_id %}table_notificacao{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block ths %}
+<th data-reference="mensagem" js-add-filter="order, mensagem">Mensagem</th>
+<th data-reference="usuario__username" js-add-filter="order, usuario__username">
+  Usuário
+</th>
+{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block tds %}
+<td data-reference="mensagem">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.mensagem|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="usuario__username">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.usuario|default:'-'}}</p>
+  </div>
+</td>
+{% endblock %}
+<!--  -->

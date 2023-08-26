@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{form.data_criacao}}
+		{{form.data_atualizacao}}
+		{{form.usuario_criacao}}
+		{{form.usuario_atualizacao}}
+		{{form.novadatamodel_ptr}}
+		{{form.nome}}
+		{{form.email}}
+		{{form.telefone}}
+		{{form.cpf_cnpj}}
+        <a href="javascript:window.history.back();">Cancelar</a>
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
