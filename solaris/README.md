@@ -14,6 +14,7 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 
 3. **Geração de Orçamentos:** Criação de orçamentos personalizados para os clientes, com base nas informações do projeto e serviços oferecidos.
 
+
 ## Requisitos de Sistema📓
 [Requisitos](https://github.com/flavionogueiraa/projetoX/blob/main/analise_requisitos.pdf)
 ## Casos de Uso📕
