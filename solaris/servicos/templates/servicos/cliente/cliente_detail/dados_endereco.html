@@ -1,0 +1,66 @@
+{% load home_tags %}
+
+<h2 class="flex flex-col col-span-full">Dados do endereço</h2>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'cep,name'}}"
+  >
+    {{object.endereco|get_attribute:'cep,verbose_name'}}
+  </label>
+  {{object.endereco.cep}}
+</div>
+
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'rua,name'}}"
+  >
+    {{object.endereco|get_attribute:'rua,verbose_name'}}
+  </label>
+  {{object.endereco.rua}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'numero,name'}}"
+  >
+    {{object.endereco|get_attribute:'numero,verbose_name'}}
+  </label>
+  {{object.endereco.numero}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'bairro,name'}}"
+    >{{object.endereco|get_attribute:'bairro,verbose_name'}}
+  </label>
+  {{object.endereco.bairro}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'referencia,name'}}"
+  >
+    {{object.endereco|get_attribute:'referencia,verbose_name'}}
+  </label>
+  {{object.endereco.referencia}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'cidade,name'}}"
+  >
+    {{object.endereco|get_attribute:'cidade,verbose_name'}}
+  </label>
+  {{object.endereco.cidade}}
+</div>
+<div class="flex flex-col">
+  <label
+    class="label font-bold"
+    for="{{object.endereco|get_attribute:'estado,name'}}"
+  >
+    {{object.endereco|get_attribute:'estado,verbose_name'}}
+  </label>
+  {{object.endereco.estado}}
+</div>

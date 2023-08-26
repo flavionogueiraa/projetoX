@@ -1,0 +1,40 @@
+{% extends 'bases/base_listagem.html' %}
+<!--  -->
+
+<!--  -->
+{% block table_id %}table_empresa{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block ths %}
+<th data-reference="nome" js-add-filter="order, nome">Nome</th>
+<th data-reference="email" js-add-filter="order, email">E-mail</th>
+<th data-reference="telefone" js-add-filter="order, telefone">Telefone</th>
+<th data-reference="cpf_cnpj" js-add-filter="order, cpf_cnpj">CPF/CNPJ</th>
+{% endblock %}
+<!--  -->
+
+<!--  -->
+{% block tds %}
+<td data-reference="nome">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.nome|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="email">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.email|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="telefone">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.telefone|default:'-'}}</p>
+  </div>
+</td>
+<td data-reference="cpf_cnpj">
+  <div class="px-8 py-10 td-container">
+    <p>{{object.cpf_cnpj|default:'-'}}</p>
+  </div>
+</td>
+{% endblock %}
+<!--  -->

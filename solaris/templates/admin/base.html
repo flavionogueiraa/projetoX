@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block extrahead %}
+<!-- JQUERY -->
+<script src="{% static 'front_assets/assets/src/vendor/jquery.min.js' %}"></script>
+
+<!-- JQUERY MASK -->
+<script src="{% static 'front_assets/assets/src/vendor/jquery.mask.min.js' %}"></script>
+
+<script>
+  window.onload = () => applyAllMasks();
+
+  function applyAllMasks() {
+    const defaultMasks = {
+      cpf_cnpj: "000.000.000-00",
+      telefone: "(00) 0 0000-0000",
+      cep: "00000-000",
+    };
+
+    for (const key in defaultMasks) {
+      const value = defaultMasks[key];
+      const input = document.querySelector(`input[name=${key}]`);
+      input && $(input).mask(value);
+    }
+  }
+</script>
+{% endblock %}

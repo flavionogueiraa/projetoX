@@ -1,0 +1,28 @@
+<div class="card p-24 flex flex-col gap-32 md2:mt-0">
+  <h2 class="text-2xl">Funcionários por visita</h2>
+  <div id="chartFuncionariosVisita" class="m-auto"></div>
+  {{funcionarios_por_visita|json_script:"funcionarios_por_visita"}}
+</div>
+
+<script>
+  const funcionariosVisitaText = document.querySelector(
+    "#funcionarios_por_visita"
+  ).textContent;
+  const funcionariosVisita = JSON.parse(funcionariosVisitaText);
+
+  var options = {
+    series: funcionariosVisita.map((funcionario) => funcionario.total_visitas),
+    chart: {
+      width: 380,
+      type: "pie",
+    },
+    labels: funcionariosVisita.map((funcionario) => funcionario.nome),
+    ...GLOBAL.defaultChartOptions,
+  };
+
+  var chart = new ApexCharts(
+    document.querySelector("#chartFuncionariosVisita"),
+    options
+  );
+  chart.render();
+</script>

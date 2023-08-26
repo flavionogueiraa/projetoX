@@ -1,0 +1,18 @@
+{% extends 'bases/base_detail.html' %}
+{% load home_tags %}
+
+<!--  -->
+{% block fields %}
+<div class="flex flex-col">
+  <label class="label font-bold" for="{{object|get_attribute:'mensagem,name'}}">
+    {{object|get_attribute:'mensagem,verbose_name'}}
+  </label>
+  {{object.mensagem}}
+</div>
+<div class="flex flex-col">
+  <label class="label font-bold" for="{{object|get_attribute:'usuario,name'}}">
+    {{object|get_attribute:'usuario,verbose_name'}}
+  </label>
+  {{object.usuario}}
+</div>
+{% endblock %}

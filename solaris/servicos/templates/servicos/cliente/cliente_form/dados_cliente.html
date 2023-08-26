@@ -1,0 +1,72 @@
+<h2 class="flex flex-col col-span-full">Dados do cliente</h2>
+<div class="flex flex-col">
+  <label class="label" for="{{form.nome.id_for_label}}">
+    {{form.nome.label}}
+  </label>
+  {{form.nome}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.email.id_for_label}}">
+    {{form.email.label}}
+  </label>
+  {{form.email}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.telefone.id_for_label}}">
+    {{form.telefone.label}}
+  </label>
+  {{form.telefone}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.cpf_cnpj.id_for_label}}">
+    {{form.cpf_cnpj.label}}
+  </label>
+  {{form.cpf_cnpj}}
+</div>
+{% if object.termo_compromisso %}
+<div class="flex flex-col">
+  <label class="label" for="{{form.termo_compromisso.id_for_label}}">
+    {{form.termo_compromisso.label}}
+  </label>
+  <div>
+    <p>Atualmente:</p>
+    <div class="flex justify-between flex-wrap">
+      <a
+        class="text-primary-pure font-bold"
+        href="{{object.termo_compromisso.url}}"
+        target="_blank"
+        >{{object.termo_compromisso}}</a
+      >
+      <div>
+        <input
+          type="checkbox"
+          name="{{form.termo_compromisso.name}}-clear"
+          id="{{form.termo_compromisso.name}}-clear_id"
+        />
+        <label for="{{form.termo_compromisso.name}}-clear_id">Limpar</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col justify-end">
+  <label class="label" for="{{form.termo_compromisso.id_for_label}}">
+    Modificar:
+  </label>
+  <input
+    type="file"
+    name="{{form.termo_compromisso.name}}"
+    id="id_{{form.termo_compromisso.name}}"
+  />
+</div>
+{% else %}
+<div class="flex flex-col justify-end">
+  <label class="label" for="{{form.termo_compromisso.id_for_label}}">
+    {{form.termo_compromisso.label}}
+  </label>
+  <input
+    type="file"
+    name="{{form.termo_compromisso.name}}"
+    id="id_{{form.termo_compromisso.name}}"
+  />
+</div>
+{% endif %}

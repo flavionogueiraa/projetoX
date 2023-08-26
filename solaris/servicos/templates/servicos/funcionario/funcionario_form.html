@@ -1,0 +1,34 @@
+{% extends 'bases/base_form.html' %}
+<!--  -->
+{% block fields %}
+<div class="flex flex-col">
+  <label class="label" for="{{form.nome.id_for_label}}">
+    {{form.nome.label}}
+  </label>
+  {{form.nome}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.email.id_for_label}}">
+    {{form.email.label}}
+  </label>
+  {{form.email}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.telefone.id_for_label}}">
+    {{form.telefone.label}}
+  </label>
+  {{form.telefone}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.cpf_cnpj.id_for_label}}">
+    {{form.cpf_cnpj.label}}
+  </label>
+  {{form.cpf_cnpj}}
+</div>
+<div class="flex flex-col">
+  <label class="label" for="{{form.usuario.id_for_label}}">
+    {{form.usuario.label}}
+  </label>
+  {{form.usuario}}
+</div>
+{% endblock %}

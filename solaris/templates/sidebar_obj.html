@@ -1,0 +1,52 @@
+<script>
+  window.subMenuItens = {};
+
+  subMenuItens = [
+    {
+      name: "Core",
+      slug: "core",
+      //submenu 1
+      submenu: {
+        level: 1,
+        items: [
+          {
+            name: "Fornecedores",
+            slug: "fornecedores",
+            link: "{% url 'fornecedor_list_view' %}",
+          },
+        ],
+      },
+    },
+
+    {
+      name: "Serviços",
+      slug: "servicos",
+      //submenu 1
+      submenu: {
+        level: 1,
+        items: [
+          {
+            name: "Clientes",
+            slug: "clientes",
+            link: "{% url 'cliente_list_view' %}",
+          },
+          {
+            name: "Funcionários",
+            slug: "funcionarios",
+            link: "{% url 'funcionario_list_view' %}",
+          },
+          {
+            name: "Visitas",
+            slug: "visitas",
+            link: "{% url 'visita_list_view' %}",
+          },
+          {
+            name: "Simulador de estação",
+            slug: "simulador_estacao",
+            link: "{% url 'simulador_estacao_solar_view' %}",
+          },
+        ],
+      },
+    },
+  ];
+</script>

@@ -1,0 +1,245 @@
+{% load widget_tweaks %}
+<!--  -->
+
+<div class="col-span-full gap-16 grid grid-cols-3">
+  <h2 class="flex flex-col col-span-full">Dados da estação solar</h2>
+  {% if simulador %}
+  <div class="flex flex-col">
+    <label class="label" for="">Estado</label>
+    <input name="estado" class="input-text" type="text" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Incidência</label>
+    <input name="incidencia" class="disabled input-text" type="text" />
+  </div>
+
+  <hr class="col-span-full" />
+  {% endif %}
+
+  <div class="hidden">
+    <label class="label" for="{{estacao_solar_form.cliente.id_for_label}}">
+      {{estacao_solar_form.cliente.label}}
+    </label>
+    {{estacao_solar_form.cliente}}
+  </div>
+
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de janeiro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de favereiro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de março</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de abril</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de maio</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de junho</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de julho</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de agosto</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de setembro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de outubro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de novembro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo de dezembro</label>
+    <input data-month class="input-text" type="number" step="0.1" />
+  </div>
+
+  <hr class="col-span-full" />
+
+  <div class="flex flex-col">
+    <label class="label" for="{{estacao_solar_form.kw_placa.id_for_label}}">
+      {{estacao_solar_form.kw_placa.label}}
+    </label>
+    {{estacao_solar_form.kw_placa}}
+  </div>
+  <div class="flex flex-col">
+    <label
+      class="label"
+      for="{{estacao_solar_form.valor_cada_placa.id_for_label}}"
+    >
+      {{estacao_solar_form.valor_cada_placa.label}}
+    </label>
+    {{estacao_solar_form.valor_cada_placa}}
+  </div>
+  <div class="flex flex-col" style="align-self: end">
+    <button type="button" class="h-48 btn calcular-consumo-btn">
+      Calcular consumo
+    </button>
+  </div>
+
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo total (kW/h)</label>
+    <input
+      data-consumo-total
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="0.1"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label class="label"> {{estacao_solar_form.consumo_mensal.label}} </label>
+    {{estacao_solar_form.consumo_mensal|add_class:"disabled"}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo diário (kW/h)</label>
+    <input
+      data-consumo-diario
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="0.1"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Consumo por hora (kW/h)</label>
+    <input
+      data-consumo-hora
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="0.1"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label class="label">
+      {{estacao_solar_form.quantidade_placas.label}}
+    </label>
+    {{estacao_solar_form.quantidade_placas|add_class:"disabled"}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Valor total gasto com placas</label>
+    <input
+      data-valor-total-placa
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="0.1"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Geração diária por placa (kW/h)</label>
+    <input
+      data-geracao-diaria
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="1"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label class="label"> {{estacao_solar_form.geracao_mensal.label}} </label>
+    {{estacao_solar_form.geracao_mensal|add_class:"disabled"}}
+  </div>
+  <div class="flex flex-col">
+    <label class="label" for="">Geração mensal total</label>
+    <input
+      data-geracao-mensal-total
+      disabled
+      class="input-text disabled"
+      type="number"
+      step="0.1"
+    />
+  </div>
+</div>
+
+<script>
+  const calcularConsumoButton = document.querySelector(".calcular-consumo-btn");
+  calcularConsumoButton.addEventListener("click", calcularConsumo);
+
+  function calcularConsumo() {
+    const estadoInput = document.querySelector("[name='estado']");
+    const incidenciaInput = document.querySelector("[name='incidencia']");
+
+    const consumoTotalInput = document.querySelector("[data-consumo-total]");
+    const consumoMensalInput = document.querySelector("[name=consumo_mensal]");
+    const consumoDiarioInput = document.querySelector("[data-consumo-diario]");
+    const consumoHoraInput = document.querySelector("[data-consumo-hora]");
+
+    const placaInput = document.querySelector("[name=kw_placa]");
+    const quantidadePlacaInput = document.querySelector(
+      "[name=quantidade_placas]"
+    );
+    const geracaoDiariaInput = document.querySelector("[data-geracao-diaria]");
+    const geracaoMensalInput = document.querySelector("[name=geracao_mensal]");
+    const geracaoMensalTotalInput = document.querySelector(
+      "[data-geracao-mensal-total]"
+    );
+
+    const valorCadaPlaca = document.querySelector("[name=valor_cada_placa]");
+    const valorTotalPlaca = document.querySelector("[data-valor-total-placa]");
+
+    const inputs = document.querySelectorAll("[data-month]");
+    const consumoTotal = Array.from(inputs).reduce((acc, input) => {
+      return acc + Number(input.value);
+    }, 0);
+    const consumoMensal = consumoTotal / 12;
+    const consumoDiario = consumoMensal / 30;
+    const consumoHora = consumoDiario / 24;
+
+    consumoTotalInput.value = consumoTotal.toFixed(2);
+    consumoMensalInput.value = consumoMensal.toFixed(2);
+    consumoDiarioInput.value = consumoDiario.toFixed(2);
+    consumoHoraInput.value = consumoHora.toFixed(2);
+
+    const placa = Number(placaInput.value);
+
+    const estado = estadoInput.value;
+    async function getIncidenciaAndSetQuantidadePlaca() {
+      const response = await fetch(
+        `http://localhost:8000/core/api/incidencia-estado/?sigla=${estado}`
+      );
+      const data = await response.json();
+      const incidencia = data.results[0].horas_sol_equivalentes;
+
+      const geracaoDiaria = placa * incidencia;
+      const geracaoMensal = geracaoDiaria * 30;
+
+      incidenciaInput.value = incidencia;
+      geracaoDiariaInput.value = geracaoDiaria.toFixed(2);
+      geracaoMensalInput.value = geracaoMensal.toFixed(2);
+
+      const quantidadePlaca = Math.ceil(consumoDiario / geracaoDiaria);
+      quantidadePlacaInput.value = quantidadePlaca;
+
+      const geracaoMensalTotal = geracaoMensal * quantidadePlaca;
+      geracaoMensalTotalInput.value = geracaoMensalTotal.toFixed(2);
+
+      valorTotalPlaca.value = quantidadePlaca * valorCadaPlaca.value;
+    }
+
+    if (estado) getIncidenciaAndSetQuantidadePlaca();
+  }
+
+  (function init() {
+    calcularConsumo();
+  })();
+</script>

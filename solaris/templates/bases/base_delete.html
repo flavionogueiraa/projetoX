@@ -1,0 +1,79 @@
+{% extends 'bases/base.html' %}
+<!--  -->
+{% load home_tags %}
+
+<!--  -->
+{% block content %}
+<!--  -->
+{% get_single_model_links lower_model object.id as single_model_links %}
+<!--  -->
+{% include 'top_bar.html'%}
+
+<main class="container-content min-h-[80vh]">
+  <form action="" method="post" class="card mt-48">
+    {% csrf_token %}
+    <div class="my-72 mx-auto max-w-[352px]">
+      {% block title %}
+      <div class="flex justify-center md2:flex-wrap">
+        <h1 class="title text-neutral-100">
+          {{title|default:"Adicione uma variável chamada 'title' no contexto"}}
+        </h1>
+      </div>
+      {% endblock %}
+      <!-- <svg
+        class="svg-animate-check mx-auto mb-24"
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="path-1"
+          d="M7.5 60.128C7.5 88.7621 30.7125 111.975 59.3466 111.975H60.6534C89.2875 111.975 112.5 88.7621 112.5 60.128C112.5 31.4939 89.2875 8.28132 60.6534 8.28132H59.3466C30.7125 8.28132 7.5 31.4939 7.5 60.128Z"
+          fill="#004993"
+          stroke="#E6EDF5"
+          stroke-width=" 15"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          class="path-2"
+          d="M45 60.1294L56.25 71.216L75 52.7383"
+          stroke="white"
+          stroke-width="8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg> -->
+      <svg class="svg-animate-check mx-auto">
+        <use xlink:href="#icone-close" />
+      </svg>
+
+      <p
+        class="text-xl font-semibold text-neutral-90 block mx-auto text-center"
+      >
+        Deseja mesmo excluir este registro?
+      </p>
+      <p
+        class="text-xl font-semibold text-neutral-90 block mx-auto text-center"
+      >
+        Essa ação é irreversível.
+      </p>
+
+      <div class="flex gap-16 justify-center">
+        <a href="{{single_model_links.detail}}?mensagem_toastify=Operação cancelada com sucesso!" class="btn secondary mt-64 w-full h-48">
+          {% if single_model_links.detail %}
+            Cancelar
+          {% else %}
+            Erro com o link de cancelamento.
+          {% endif %}
+        </a>
+        <button class="btn red mt-64 w-full h-48">
+          Excluir
+        </button>
+      </div>
+    </div>
+  </form>
+</main>
+{% endblock %}
