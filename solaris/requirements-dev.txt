@@ -25,6 +25,7 @@ django-crum==0.7.9
 django-filter==22.1
 django-full-crud==0.2.9
 django-import-export==3.1.0
+django-model2puml==0.4.1
 django-object-actions==4.1.0
 django-widget-tweaks==1.4.12
 django_debug_toolbar==3.8.1

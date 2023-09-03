@@ -1,0 +1,368 @@
+@startuml 
+class "django_app_novadata.ConteudoCustom <Django_App_Novadata>" as django_app_novadata.ConteudoCustom #dbd6f4 {
+    Conteúdo Customizado
+    --
+    + id (BigAutoField)
+    + local (CharField)
+    + conteudo (TextField)
+    + logo (FileField)
+    --
+}
+
+
+class "django_app_novadata.ConfiguracaoAutenticacao <Django_App_Novadata>" as django_app_novadata.ConfiguracaoAutenticacao #dbd6f4 {
+    Configuração - Autenticação
+    --
+    + id (BigAutoField)
+    + local (CharField)
+    + titulo (CharField)
+    + logo (FileField)
+    + possui_troca_senha (BooleanField)
+    + possui_cadastro (BooleanField)
+    + extra_head (TextField)
+    + extra_style (TextField)
+    + extra_js (TextField)
+    --
+}
+
+
+class "admin.LogEntry <Administração>" as admin.LogEntry #f4d6f1 {
+    entrada de log
+    --
+    - id (AutoField)
+    + action_time (DateTimeField)
+    ~ user (ForeignKey)
+    ~ content_type (ForeignKey)
+    + object_id (TextField)
+    + object_repr (CharField)
+    + action_flag (PositiveSmallIntegerField)
+    + change_message (TextField)
+    --
+}
+admin.LogEntry -- auth.User
+admin.LogEntry -- contenttypes.ContentType
+
+
+class "auth.Permission <Autenticação e Autorização>" as auth.Permission #e8f4d6 {
+    permissão
+    --
+    - id (AutoField)
+    + name (CharField)
+    ~ content_type (ForeignKey)
+    + codename (CharField)
+    --
+}
+auth.Permission -- contenttypes.ContentType
+
+
+class "auth.Group <Autenticação e Autorização>" as auth.Group #e8f4d6 {
+    grupo
+    --
+    - id (AutoField)
+    + name (CharField)
+    # permissions (ManyToManyField)
+    --
+}
+auth.Group *--* auth.Permission
+
+
+class "auth.User <Autenticação e Autorização>" as auth.User #e8f4d6 {
+    usuário
+    --
+    - id (AutoField)
+    + password (CharField)
+    + last_login (DateTimeField)
+    + is_superuser (BooleanField)
+    + username (CharField)
+    + first_name (CharField)
+    + last_name (CharField)
+    + email (EmailField)
+    + is_staff (BooleanField)
+    + is_active (BooleanField)
+    + date_joined (DateTimeField)
+    # groups (ManyToManyField)
+    # user_permissions (ManyToManyField)
+    --
+}
+auth.User *--* auth.Group
+auth.User *--* auth.Permission
+
+
+class "contenttypes.ContentType <Tipos de Conteúdo>" as contenttypes.ContentType #d6f4de {
+    tipo de conteúdo
+    --
+    - id (AutoField)
+    + app_label (CharField)
+    + model (CharField)
+    --
+}
+
+
+class "sessions.Session <Sessões>" as sessions.Session #f4e1d6 {
+    sessão
+    --
+    + session_key (CharField)
+    + session_data (TextField)
+    + expire_date (DateTimeField)
+    --
+}
+
+
+class "avatar.Avatar <Avatar>" as avatar.Avatar #d6edf4 {
+    avatar
+    --
+    - id (AutoField)
+    ~ user (ForeignKey)
+    + primary (BooleanField)
+    + avatar (AvatarField)
+    + date_uploaded (DateTimeField)
+    --
+}
+avatar.Avatar -- auth.User
+
+
+class "core.Endereco <Core>" as core.Endereco #e8f4d6 {
+    Endereço
+    --
+    + id (BigAutoField)
+    + cep (CharField)
+    + rua (CharField)
+    + numero (CharField)
+    + bairro (CharField)
+    + referencia (CharField)
+    + cidade (CharField)
+    + estado (CharField)
+    + latitude (CharField)
+    + longitude (CharField)
+    ~ cliente (OneToOneField)
+    --
+}
+core.Endereco -- servicos.Cliente
+
+
+class "core.Pessoa <Core>" as core.Pessoa #e8f4d6 {
+    Pessoa
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + nome (CharField)
+    + email (EmailField)
+    + telefone (CharField)
+    + cpf_cnpj (CharField)
+    --
+}
+core.Pessoa -- auth.User
+core.Pessoa -- auth.User
+core.Pessoa -- novadata_utils.NovadataModel
+
+
+class "core.Fornecedor <Core>" as core.Fornecedor #e8f4d6 {
+    Fornecedor
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + nome (CharField)
+    + email (EmailField)
+    + telefone (CharField)
+    + cpf_cnpj (CharField)
+    ~ pessoa_ptr (OneToOneField)
+    --
+}
+core.Fornecedor -- auth.User
+core.Fornecedor -- auth.User
+core.Fornecedor -- novadata_utils.NovadataModel
+core.Fornecedor -- core.Pessoa
+
+
+class "core.IncidenciaEstado <Core>" as core.IncidenciaEstado #e8f4d6 {
+    Incidência por estado
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + estado (CharField)
+    + sigla (CharField)
+    + horas_sol_equivalentes (DecimalField)
+    --
+}
+core.IncidenciaEstado -- auth.User
+core.IncidenciaEstado -- auth.User
+core.IncidenciaEstado -- novadata_utils.NovadataModel
+
+
+class "core.Notificacao <Core>" as core.Notificacao #e8f4d6 {
+    Notificação
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + mensagem (CharField)
+    ~ usuario (ForeignKey)
+    --
+}
+core.Notificacao -- auth.User
+core.Notificacao -- auth.User
+core.Notificacao -- novadata_utils.NovadataModel
+core.Notificacao -- auth.User
+
+
+class "home.AlterUserEmail <Home>" as home.AlterUserEmail #efd6f4 {
+    alter user email
+    --
+    + id (BigAutoField)
+    --
+}
+
+
+class "home.Profile <Home>" as home.Profile #efd6f4 {
+    Profile
+    --
+    + id (BigAutoField)
+    ~ usuario (OneToOneField)
+    --
+}
+home.Profile -- auth.User
+
+
+class "servicos.Cliente <Servicos>" as servicos.Cliente #e5f4d6 {
+    Cliente
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + nome (CharField)
+    + email (EmailField)
+    + telefone (CharField)
+    + cpf_cnpj (CharField)
+    ~ pessoa_ptr (OneToOneField)
+    + termo_compromisso (FileField)
+    --
+}
+servicos.Cliente -- auth.User
+servicos.Cliente -- auth.User
+servicos.Cliente -- novadata_utils.NovadataModel
+servicos.Cliente -- core.Pessoa
+
+
+class "servicos.EstacaoSolar <Servicos>" as servicos.EstacaoSolar #e5f4d6 {
+    Estação solar
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    ~ cliente (ForeignKey)
+    + quantidade_placas (IntegerField)
+    + consumo_mensal (DecimalField)
+    + geracao_mensal (DecimalField)
+    + kw_placa (DecimalField)
+    + valor_cada_placa (DecimalField)
+    --
+}
+servicos.EstacaoSolar -- auth.User
+servicos.EstacaoSolar -- auth.User
+servicos.EstacaoSolar -- novadata_utils.NovadataModel
+servicos.EstacaoSolar -- servicos.Cliente
+
+
+class "servicos.Funcionario <Servicos>" as servicos.Funcionario #e5f4d6 {
+    Funcionário
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + nome (CharField)
+    + email (EmailField)
+    + telefone (CharField)
+    + cpf_cnpj (CharField)
+    ~ pessoa_ptr (OneToOneField)
+    ~ usuario (OneToOneField)
+    --
+}
+servicos.Funcionario -- auth.User
+servicos.Funcionario -- auth.User
+servicos.Funcionario -- novadata_utils.NovadataModel
+servicos.Funcionario -- core.Pessoa
+servicos.Funcionario -- auth.User
+
+
+class "servicos.Visita <Servicos>" as servicos.Visita #e5f4d6 {
+    Visita
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    ~ novadatamodel_ptr (OneToOneField)
+    + tipo (CharField)
+    + data_hora (DateTimeField)
+    ~ funcionario (ForeignKey)
+    ~ cliente (ForeignKey)
+    + observacoes (TextField)
+    + realizada (BooleanField)
+    --
+}
+servicos.Visita -- auth.User
+servicos.Visita -- auth.User
+servicos.Visita -- novadata_utils.NovadataModel
+servicos.Visita -- servicos.Funcionario
+servicos.Visita -- servicos.Cliente
+
+
+class "advanced_filters.AdvancedFilter <Advanced_Filters>" as advanced_filters.AdvancedFilter #e2d6f4 {
+    Advanced Filter
+    --
+    + id (BigAutoField)
+    + title (CharField)
+    ~ created_by (ForeignKey)
+    + created_at (DateTimeField)
+    + url (CharField)
+    + b64_query (CharField)
+    + model (CharField)
+    # users (ManyToManyField)
+    # groups (ManyToManyField)
+    --
+}
+advanced_filters.AdvancedFilter -- auth.User
+advanced_filters.AdvancedFilter *--* auth.User
+advanced_filters.AdvancedFilter *--* auth.Group
+
+
+class "novadata_utils.NovadataModel <Novadata_Utils>" as novadata_utils.NovadataModel #e3f4d6 {
+    novadata model
+    --
+    + id (BigAutoField)
+    + data_criacao (DateTimeField)
+    + data_atualizacao (DateTimeField)
+    ~ usuario_criacao (ForeignKey)
+    ~ usuario_atualizacao (ForeignKey)
+    --
+}
+novadata_utils.NovadataModel -- auth.User
+novadata_utils.NovadataModel -- auth.User
+
+
+@enduml

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "novadata_utils",
     "import_export",
+    "puml_generator",
     "rest_framework",
     "widget_tweaks",
 ]
