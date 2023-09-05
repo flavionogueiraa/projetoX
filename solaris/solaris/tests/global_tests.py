@@ -5,7 +5,7 @@
 # is_authenticated como True
 
 # [RF003] Recuperar Senha
-# O sistema deve permitir que o usuário insira o endereço de e-mail associado à sua conta
+# O sistema deve permitir que o usuário insira o endereço de e-mail associado à sua conta  # noqa E501
 # para iniciar o processo de recuperação de senha.
 # Usaremos teste caixa preta para testar isso? Acredito que sim.
 
