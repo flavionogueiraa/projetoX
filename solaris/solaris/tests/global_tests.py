@@ -4,10 +4,6 @@
 # Fazer o teste do login e checar se o usuário tem o atributo
 # is_authenticated como True
 
-# [RF002] Redefinir Senha
-# O sistema deve que o usuário redefina sua senha após o primeiro acesso ao sistema
-# Não temos redefinição de senha, apenas recuperação de senha
-
 # [RF003] Recuperar Senha
 # O sistema deve permitir que o usuário insira o endereço de e-mail associado à sua conta
 # para iniciar o processo de recuperação de senha.
@@ -23,6 +19,6 @@
 # Ok, temos menus no admin para isso, podemos só tirar alguns prints.
 
 # RNF005] Quantidade de usuário conectados
-# O sistema deve suportar um número máximo de 100 usuários conectados simultaneamente.
+# O sistema deve suportar um número máximo de 100 usuários conectados simultaneamente.  # noqa E501
 # Talvez até consigamos logar 100 usuários, mas teremos que limitar o
 # número máximo para 100? Meio estranho, não acham?
