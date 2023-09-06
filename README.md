@@ -15,7 +15,7 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 3. **Geração de Orçamentos:** Criação de orçamentos personalizados para os clientes, com base nas informações do projeto e serviços oferecidos.
 
 ## Documento Overleaf 📃
-[Parcial do Artigo](https://www.overleaf.com/3346185465bzvxsrtvdthq))
+[Parcial do Artigo](https://www.overleaf.com/3346185465bzvxsrtvdthq)
 ## Definições de Testes e V&V 📃
 [Definições de Testes e V&V ](https://github.com/flavionogueiraa/projetoX/blob/main/documents/definicao_atividades_vev.pdf)
 ## Requisitos de Sistema📓
