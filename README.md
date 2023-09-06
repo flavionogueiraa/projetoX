@@ -21,6 +21,8 @@ A Solaris possui um conjunto abrangente de funcionalidades projetadas para facil
 [Diagrama de Casos de Uso](https://github.com/flavionogueiraa/projetoX/blob/main/documents/diagrama_caso_uso.pdf)
 ## Diagrama de Classes📃
 [Diagrama de Classes](https://github.com/flavionogueiraa/projetoX/blob/main/documents/diagrama_classe.pdf)
+## Definição das atividades de V&V
+[Definição das atividades de V&V](https://github.com/flavionogueiraa/projetoX/blob/main/documents/definicao_atividades_vev.pdf)
 ## Membros da Equipe🖖
 - **Dimona Laquis Alves Andrade;**
 - **Eric dos Santos Bezerra;**
